@@ -16,6 +16,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{enumitem}
 \RequirePackage{hyperref}
+\RequirePackage{booktabs}
 
 % ------------------------------------------------------------
 % Department packages
@@ -26,6 +27,7 @@
 \RequirePackage{csdept-theorems}
 \RequirePackage{csdept-algorithms}
 \RequirePackage{csdept-boxes}
+\RequirePackage{csdept-graphs}
 
 % ------------------------------------------------------------
 % Colors
