@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csdept-code}[2026/09/30 v0.1 Department source code]
+
+\RequirePackage{minted}
+\RequirePackage{xcolor}
+
+\definecolor{csdeptcodebg}{HTML}{F5F6F7}
+\definecolor{csdeptcoderule}{HTML}{D5D8DC}
+
+\setminted{
+  fontsize=\small,
+  breaklines,
+  autogobble,
+  frame=single,
+  framesep=3mm,
+  rulecolor=\color{csdeptcoderule},
+  bgcolor=csdeptcodebg,
+  linenos,
+  numbersep=8pt,
+  tabsize=4
+}
+
+\newenvironment{code}[1]
+  {\VerbatimEnvironment\begin{minted}{#1}}
+  {\end{minted}}
+
+\endinput

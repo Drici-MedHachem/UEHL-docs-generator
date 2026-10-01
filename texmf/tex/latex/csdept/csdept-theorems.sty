@@ -1,0 +1,34 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{csdept-theorems}[2026/09/30 v0.1 Department theorem environments]
+
+\RequirePackage{amsthm}
+
+% ------------------------------------------------------------
+% Theorem-like environments
+% ------------------------------------------------------------
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+% ------------------------------------------------------------
+% Definition-like environments
+% ------------------------------------------------------------
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+% ------------------------------------------------------------
+% Remark-like environments
+% ------------------------------------------------------------
+
+\theoremstyle{remark}
+
+\newtheorem{remark}[theorem]{Remark}
+
+\endinput

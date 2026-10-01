@@ -1,0 +1,633 @@
+\documentclass{csdept}
+
+% ============================================================
+% Document metadata
+% ============================================================
+
+\university{University of El Oued}
+\faculty{Faculty of Exact Sciences}
+\department{Department of Computer Science}
+
+\course{Algorithms and Data Structures}
+\teacher{Dr. Firstname Lastname}
+\academicyear{2026--2027}
+
+\documenttype{Reference Document}
+
+\title{Computer Science Department Document System}
+
+% ============================================================
+% Document
+% ============================================================
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+This document demonstrates the main features provided by the
+Computer Science Department document system.
+
+The system provides support for:
+
+\begin{itemize}
+    \item department and course metadata;
+    \item mathematical notation;
+    \item theorem-like environments;
+    \item exercises and teaching boxes;
+    \item pseudocode and algorithms;
+    \item source-code listings;
+    \item standard LaTeX lists and structures;
+    \item hyperlinks and references.
+\end{itemize}
+
+The professor only needs to load the \texttt{csdept} document class:
+
+\begin{verbatim}
+\documentclass{csdept}
+\end{verbatim}
+
+The document metadata can then be specified using commands such as
+\texttt{\textbackslash course}, \texttt{\textbackslash teacher},
+and \texttt{\textbackslash documenttype}.
+
+% ============================================================
+\section{Mathematics}
+% ============================================================
+
+The system provides mathematical typesetting through
+\texttt{mathtools}.
+
+Inline mathematics can be written normally, for example
+$a^2+b^2=c^2$.
+
+Displayed mathematics can be written as:
+
+\[
+    f(x) = x^2 + 2x + 1.
+\]
+
+More complicated expressions are also supported:
+
+\[
+    \sum_{i=1}^{n} i
+    =
+    \frac{n(n+1)}{2}.
+\]
+
+An equation can be numbered using the standard \texttt{equation}
+environment:
+
+\begin{equation}
+    T(n) = 2T\left(\frac{n}{2}\right) + O(n).
+\end{equation}
+
+Matrices are supported as well:
+
+\[
+    A =
+    \begin{pmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{pmatrix}.
+\]
+
+% ============================================================
+\section{Theorem Environments}
+% ============================================================
+
+The theorem package provides several standard environments.
+
+\subsection{Definition}
+
+\begin{definition}
+A graph is an ordered pair $G=(V,E)$ where $V$ is a set of
+vertices and $E$ is a set of edges connecting pairs of vertices.
+\end{definition}
+
+\subsection{Theorem}
+
+\begin{theorem}
+Every finite tree with $n$ vertices has exactly $n-1$ edges.
+\end{theorem}
+
+\begin{proof}
+We prove the result by induction on $n$.
+
+For $n=1$, the tree contains one vertex and no edges, so the
+statement holds.
+
+Assume that every tree with $n$ vertices has $n-1$ edges.
+A tree with $n+1$ vertices contains a leaf. Removing this leaf
+and its incident edge produces a tree with $n$ vertices.
+By the induction hypothesis, the remaining tree has $n-1$ edges.
+Adding the removed edge gives $n$ edges.
+
+Therefore, a tree with $n+1$ vertices has $n$ edges.
+\end{proof}
+
+\subsection{Lemma}
+
+\begin{lemma}
+If a graph contains a path from $u$ to $v$, then $u$ and $v$
+belong to the same connected component.
+\end{lemma}
+
+\subsection{Proposition}
+
+\begin{proposition}
+Every connected graph contains a spanning tree.
+\end{proposition}
+
+\subsection{Corollary}
+
+\begin{corollary}
+Every connected graph with $n$ vertices contains a spanning tree
+with $n-1$ edges.
+\end{corollary}
+
+\subsection{Example}
+
+\begin{example}
+Consider the path
+
+\[
+    v_1 \rightarrow v_2 \rightarrow v_3 \rightarrow v_4.
+\]
+
+This graph is connected and contains a spanning tree consisting
+of all four vertices and the three edges shown above.
+\end{example}
+
+\subsection{Remark}
+
+\begin{remark}
+The theorem-like environments are provided by \texttt{amsthm}.
+The standard \texttt{proof} environment is therefore available
+without defining a custom environment.
+\end{remark}
+
+% ============================================================
+\section{Exercises}
+% ============================================================
+
+The \texttt{exercise} environment provides numbered exercises.
+
+\begin{exercise}
+
+Given an array of $n$ integers, find the maximum element.
+
+What is the time complexity of a straightforward solution?
+
+\end{exercise}
+
+The exercise environment also accepts an optional title.
+
+\begin{exercise}[Binary Search]
+
+Given a sorted array of integers and a target value $x$,
+implement binary search.
+
+What is the time complexity of binary search?
+
+\end{exercise}
+
+Exercises can contain mathematics, lists, source code,
+and other standard LaTeX content.
+
+\begin{exercise}[BFS Implementation]
+
+Given an unweighted graph $G=(V,E)$ and a starting vertex $s$,
+implement breadth-first search.
+
+A possible implementation is:
+
+\begin{code}{python}
+from collections import deque
+
+def bfs(graph, start):
+    visited = {start}
+    queue = deque([start])
+
+    while queue:
+        u = queue.popleft()
+
+        for v in graph[u]:
+            if v not in visited:
+                visited.add(v)
+                queue.append(v)
+
+    return visited
+\end{code}
+
+What is the time complexity of this implementation in terms of
+$|V|$ and $|E|$?
+
+\end{exercise}
+
+\newpage
+% ============================================================
+\section{Information Boxes}
+% ============================================================
+
+The document system provides several semantic environments for
+highlighting teaching information.
+
+\subsection{Important Information}
+
+\begin{important}
+
+BFS computes shortest-path distances from the starting vertex
+in an unweighted graph.
+
+\end{important}
+
+\subsection{Notes}
+
+\begin{note}
+
+When using an adjacency-list representation, iterating over all
+neighbors of every vertex takes $O(|V|+|E|)$ time.
+
+\end{note}
+
+\subsection{Warnings}
+
+\begin{warning}
+
+Do not use ordinary BFS for weighted graphs when edge weights
+can differ.
+
+\end{warning}
+
+% ============================================================
+\section{Objectives and Tasks}
+% ============================================================
+
+\subsection{Objectives}
+
+\begin{objective}
+
+By the end of this section, students should be able to:
+
+\begin{itemize}
+    \item explain the BFS algorithm;
+    \item implement BFS;
+    \item analyze its time complexity;
+    \item identify situations where BFS is appropriate.
+\end{itemize}
+
+\end{objective}
+
+\subsection{Tasks}
+
+A task without a title can be written as:
+
+\begin{task}
+
+Implement BFS using an adjacency-list representation.
+
+\end{task}
+
+A task can also have an optional title:
+
+\begin{task}[Complexity Analysis]
+
+Determine the time and space complexity of your implementation.
+
+\end{task}
+
+% ============================================================
+\section{Questions, Answers, and Solutions}
+% ============================================================
+
+\subsection{Questions}
+
+The \texttt{question} environment supports an optional label,
+which can be used for marks or another short piece of information.
+
+\begin{question}[2 points]
+
+What is the time complexity of binary search?
+
+\end{question}
+
+\begin{answer}
+
+The time complexity of binary search is
+
+\[
+    O(\log n).
+\]
+
+\end{answer}
+
+\begin{question}[3 points]
+
+Why does BFS find shortest paths in an unweighted graph?
+
+\end{question}
+
+\begin{solution}
+
+BFS explores vertices in increasing order of their distance from
+the starting vertex. Therefore, the first time a vertex is
+visited, it has been reached through a shortest path.
+
+\end{solution}
+
+% ============================================================
+\section{Algorithms}
+% ============================================================
+
+The \texttt{csdept-algorithms} package provides pseudocode through
+\texttt{algorithm2e}.
+
+\begin{algorithm}[H]
+\caption{Breadth-First Search}
+
+\KwIn{Graph $G=(V,E)$ and starting vertex $s$}
+\KwOut{Distance array $d$}
+
+\ForEach{$v \in V$}{
+    $d[v] \gets \infty$\;
+}
+
+$d[s] \gets 0$\;
+$Q \gets [s]$\;
+
+\While{$Q$ is not empty}{
+    $u \gets$ first element of $Q$\;
+    remove $u$ from $Q$\;
+
+    \ForEach{$v$ adjacent to $u$}{
+        \If{$d[v] = \infty$}{
+            $d[v] \gets d[u] + 1$\;
+            append $v$ to $Q$\;
+        }
+    }
+}
+
+\KwRet{$d$}
+
+\end{algorithm}
+
+The algorithm package also provides custom inputs and outputs:
+
+\begin{algorithm}[H]
+\caption{Maximum Element}
+
+\KwIn{Array $A$ containing $n$ elements}
+\KwOut{The maximum element of $A$}
+
+$maximum \gets A[1]$\;
+
+\For{$i \gets 2$ \KwTo $n$}{
+    \If{$A[i] > maximum$}{
+        $maximum \gets A[i]$\;
+    }
+}
+
+\KwRet{$maximum$}
+
+\end{algorithm}
+
+% ============================================================
+\section{Source Code}
+% ============================================================
+
+The system uses \texttt{minted} and Pygments for syntax
+highlighting.
+
+No LaTeX escaping is required inside a \texttt{code} environment.
+The contents are ordinary source code.
+
+\subsection{Python}
+
+\begin{code}{python}
+def binary_search(a, x):
+    left = 0
+    right = len(a) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if a[mid] == x:
+            return mid
+        elif a[mid] < x:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+\end{code}
+
+\subsection{C++}
+
+\begin{code}{cpp}
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> values = {1, 2, 3, 4, 5};
+
+    for (int x : values) {
+        std::cout << x << '\n';
+    }
+
+    return 0;
+}
+\end{code}
+
+\subsection{Java}
+
+\begin{code}{java}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
+}
+\end{code}
+
+% ============================================================
+\section{Lists and General LaTeX}
+% ============================================================
+
+Unordered lists work normally:
+
+\begin{itemize}
+    \item Graphs
+    \item Trees
+    \item Searching
+    \item Sorting
+\end{itemize}
+
+Ordered lists work normally:
+
+\begin{enumerate}
+    \item Read the input.
+    \item Process the graph.
+    \item Produce the result.
+\end{enumerate}
+
+Nested lists are supported as well:
+
+\begin{enumerate}
+    \item Graph traversal
+
+    \begin{itemize}
+        \item BFS
+        \item DFS
+    \end{itemize}
+
+    \item Shortest paths
+
+    \begin{itemize}
+        \item Dijkstra
+        \item Bellman--Ford
+    \end{itemize}
+\end{enumerate}
+
+% ============================================================
+\section{Hyperlinks and References}
+% ============================================================
+
+Hyperlinks can be written using the standard \texttt{hyperref}
+commands.
+
+For example:
+
+\begin{verbatim}
+\url{https://www.example.com}
+\end{verbatim}
+
+A live hyperlink can also be written directly:
+
+\url{https://www.example.com}
+
+The document class configures hyperlink colors automatically.
+
+% ============================================================
+\section{Combined Example}
+% ============================================================
+
+The following example demonstrates how the different components
+can be used together in an ordinary teaching document.
+
+\begin{objective}
+
+Students should understand how BFS explores an unweighted graph
+and how its complexity depends on the graph representation.
+
+\end{objective}
+
+\begin{important}
+
+For an adjacency-list representation, BFS runs in
+
+\[
+    O(|V|+|E|).
+\]
+
+\end{important}
+
+\begin{exercise}[Graph Traversal]
+
+Consider the graph $G=(V,E)$ where
+
+\[
+    V = \{A,B,C,D,E\}
+\]
+
+and
+
+\[
+    E =
+    \{
+        (A,B),
+        (A,C),
+        (B,D),
+        (C,E)
+    \}.
+\]
+
+\begin{task}[Traversal Order]
+
+Starting from vertex $A$, determine the order in which BFS
+visits the vertices.
+
+\end{task}
+
+\begin{question}[2 points]
+
+What is the distance from $A$ to $E$?
+
+\end{question}
+
+\begin{answer}
+
+The shortest path is
+
+\[
+    A \rightarrow C \rightarrow E,
+\]
+
+so the distance is $2$.
+
+\end{answer}
+
+\begin{code}{python}
+from collections import deque
+
+def bfs(graph, start):
+    distance = {start: 0}
+    queue = deque([start])
+
+    while queue:
+        u = queue.popleft()
+
+        for v in graph[u]:
+            if v not in distance:
+                distance[v] = distance[u] + 1
+                queue.append(v)
+
+    return distance
+\end{code}
+
+\end{exercise}
+
+% ============================================================
+\section{Conclusion}
+% ============================================================
+
+This document demonstrates the main functionality provided by
+the Computer Science Department document system.
+
+A professor can create a document by loading the class:
+
+\begin{verbatim}
+\documentclass{csdept}
+\end{verbatim}
+
+and then defining the required metadata:
+
+\begin{verbatim}
+\course{Algorithms and Data Structures}
+\teacher{Dr. Firstname Lastname}
+\academicyear{2026--2027}
+\documenttype{Tutorial Sheet}
+\end{verbatim}
+
+The professor can then freely combine ordinary LaTeX with the
+department's mathematical, theorem, algorithm, source-code,
+exercise, and teaching environments.
+
+\end{document}
+
